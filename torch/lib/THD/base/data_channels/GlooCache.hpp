@@ -132,6 +132,7 @@ struct GlooCache {
     size_t curDevice = 0;
     auto context = std::make_shared<context_type>(
         group.mustGetGroupRank(_rank), group.size());
+    context->setTimeout(std::chrono::seconds(3600));
     prefix_store_type prefix_store(prefix, *group._store);
     context->connectFullMesh(prefix_store, _deviceList[curDevice]);
     return context;
